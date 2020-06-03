@@ -1,0 +1,115 @@
+--------- PROMPT User to create: EPAM
+
+Datafile location: c:\Programs\Oracle\oradata\ORCL\
+
+Executing create_tablespace.sql for data tablespace
+--------- DEFINE USER_NAME = EPAM
+EPAM_DATA
+c:\Programs\Oracle\oradata\ORCL\EPAM_DATA.DBF
+old   1: CREATE TABLESPACE  "&&DATA_TBS_NAME"
+new   1: CREATE TABLESPACE  "EPAM_DATA"
+old   3:         '&&DATA_FILENAME' SIZE 10M AUTOEXTEND ON NEXT 10M MAXSIZE 10G
+new   3:         'c:\Programs\Oracle\oradata\ORCL\EPAM_DATA.DBF' SIZE 10M AUTOEXTEND ON NEXT 10M MAXSIZE 10G
+
+Tablespace created.
+
+Elapsed: 00:00:00.24
+old   1: CREATE TABLESPACE "&&INDEX_NAME"
+new   1: CREATE TABLESPACE "EPAM_IDX"
+old   3:         '&&INDEX_FILENAME' SIZE 10M AUTOEXTEND ON NEXT 10M MAXSIZE 10G
+new   3:         'c:\Programs\Oracle\oradata\ORCL\EPAM_IDX.DBF' SIZE 10M AUTOEXTEND ON NEXT 10M MAXSIZE 10G
+
+Tablespace created.
+
+Elapsed: 00:00:00.27
+
+--------- PROMPT Executing create_user.sql
+--------- define USER_NAME = EPAM
+
+Session altered.
+
+Elapsed: 00:00:00.00
+old   1: CREATE USER "&&USER_NAME"
+new   1: CREATE USER "EPAM"
+old   3:   DEFAULT TABLESPACE "&&DEFAULT_TBS"
+new   3:   DEFAULT TABLESPACE "EPAM_DATA"
+old   5:   QUOTA 20M on "&&DEFAULT_TBS"
+new   5:   QUOTA 20M on "EPAM_DATA"
+
+User created.
+
+Elapsed: 00:00:00.03
+--------- PROMPT Calling grant.sql for EPAM
+--------- DEFINE USER_NAME = EPAM
+old   1: GRANT CREATE PROCEDURE TO "&&USER_NAME"
+new   1: GRANT CREATE PROCEDURE TO "EPAM"
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE SEQUENCE TO "&&USER_NAME"
+new   1: GRANT CREATE SEQUENCE TO "EPAM"
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE TABLE TO "&&USER_NAME"
+new   1: GRANT CREATE TABLE TO "EPAM"
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE TYPE TO "&&USER_NAME"
+new   1: GRANT CREATE TYPE TO "EPAM"
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE TRIGGER TO "&&USER_NAME"
+new   1: GRANT CREATE TRIGGER TO "EPAM"
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE SYNONYM TO "&&USER_NAME"
+new   1: GRANT CREATE SYNONYM TO "EPAM"
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE SESSION TO "&&USER_NAME"
+new   1: GRANT CREATE SESSION TO "EPAM"
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE ANY DIRECTORY TO "&&USER_NAME"
+new   1: GRANT CREATE ANY DIRECTORY TO "EPAM"
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT UNLIMITED TABLESPACE TO "&&USER_NAME"
+new   1: GRANT UNLIMITED TABLESPACE TO "EPAM"
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: GRANT CREATE VIEW TO "&&USER_NAME"
+new   1: GRANT CREATE VIEW TO "EPAM"
+
+Grant succeeded.
+
+Elapsed: 00:00:00.00
+old   1: ALTER USER "&&USER_NAME" QUOTA UNLIMITED ON "&&USER_NAME._DATA"
+new   1: ALTER USER "EPAM" QUOTA UNLIMITED ON "EPAM_DATA"
+
+User altered.
+
+Elapsed: 00:00:00.03
+old   1: ALTER USER "&&USER_NAME" QUOTA UNLIMITED ON "&&USER_NAME._IDX"
+new   1: ALTER USER "EPAM" QUOTA UNLIMITED ON "EPAM_IDX"
+
+User altered.
+
+Elapsed: 00:00:00.00

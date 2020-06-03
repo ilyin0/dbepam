@@ -1,0 +1,26 @@
+Name of user to be dropped: EPAM
+
+
+Session altered.
+
+Elapsed: 00:00:00.00
+old   1: DROP USER "&&USER_NAME" CASCADE
+new   1: DROP USER "EPAM" CASCADE
+
+User dropped.
+
+Elapsed: 00:00:00.30
+Name of tablespace to be dropped: 'EPAM_DATA'
+
+old   1: DROP TABLESPACE "&&TABLESPACE_NAME"
+new   1: DROP TABLESPACE "EPAM_DATA"
+
+Tablespace dropped.
+
+Elapsed: 00:00:05.11
+old   1: DROP TABLESPACE "&&INDEX_NAME"
+new   1: DROP TABLESPACE "EPAM_IDX"
+
+Tablespace dropped.
+
+Elapsed: 00:00:04.67
