@@ -1,10 +1,10 @@
-#inserting info about league consisting match
+--inserting info about league consisting match
 INSERT INTO LEAGUES(LEAGUE_NAME, LEAGUE_YEAR)
 SELECT DT.League, DT.Championship
 FROM DATA_TABLE DT
 
 
-#inserting info about coaches of two opposite teams
+--inserting info about coaches of two opposite teams
 INSERT INTO COACHES(COACH_NAME)
 SELECT DT.Trainer_Team_1
 FROM DATA_TABLE DT;
@@ -14,27 +14,27 @@ SELECT DT.Trainer_Team_2
 FROM DATA_TABLE DT;
 
 
-#inserting info about player making event
+--inserting info about player making event
 INSERT INTO PLAYERS(PLAYER_NAME, PLAYER_ROLE)
 SELECT DT.Player_Last_Name, DT.Position
 FROM DATA_TABLE DT;
 
 
-#inserting info about stadium which match is played in
+--inserting info about stadium which match is played in
 INSERT INTO STADIUMS(STADIUM_NAME, STADIUM_CAPACITY, CITY_NAME)
 SELECT DT.Venue, DT.Capacity, DT.Location
 FROM DATA_TABLE DT
 WHERE DT.Venue  NOT IN (SELECT S.STADIUM_NAME FROM STADIUMS S);
 
 
-#inserting foreign key LEAGUE_ID into STAGES table
+--inserting foreign key LEAGUE_ID into STAGES table
 INSERT INTO STAGES(LEAGUE_ID)
 SELECT L.ID
 FROM DATA_TABLE DT
 	LEFT JOIN LEAGUES L ON DT.League = L.LEAGUE_NAME;
 
 
-#inserting info about matches
+--inserting info about matches
 INSERT INTO "MATCHES"("MATCH_DATE", "STADIUM_ID", "STAGE_ID")
 SELECT DTL.Date, STAD.ID, STAG.ID
 FROM STADIUMS STAD, STAGES STAG, (SELECT * FROM DATA_TABLE DT, LEAGUES L WHERE DT.League = L.LEAGUE_NAME) DTL
@@ -44,7 +44,7 @@ WHERE STAD.STADIUM_NAME = DTL.Venue
 
 
 
-#inserting info tickets
+--inserting info tickets
 INSERT INTO TICKETS_INFO(AVERAGE_PRICE, SOLD_AMOUNT, MATCH_ID)
 SELECT DT.Avg_price, DT.tickets_sold, M.ID
 FROM DATA_TABLE DT, MATCHES M, STADIUMS S
@@ -53,7 +53,7 @@ WHERE DT.Date = M.MATCH_DATE
   AND S.ID = M.STADIUM_ID;
 
 
-#inserting into TEAMS table
+--inserting into TEAMS table
 INSERT INTO TEAMS(TEAM_NAME, TEAM_FOUNDATION_YEAR, STADIUM_ID)
 SELECT DT.Team_1, DT.Team_2, S.ID
 FROM DATA_TABLE DT, STADIUMS S
@@ -61,7 +61,7 @@ WHERE DT.Venue = S.STADIUM_NAME;
 
 
 
-#inserting info about events
+--inserting info about events
 INSERT INTO EVENTS(EVENT_NAME, EVENT_MINUTE, PLAYER_ID, MATCH_ID)
 SELECT DT.Event, DT.Event_Time, P.ID, M.ID
 FROM DATA_TABLE DT, PLAYERS P, MATCHES M, TEAMS T
@@ -70,7 +70,7 @@ WHERE DT.Player_Last_Name = P.PLAYER_NAME
   AND DT.Date = M.MATCH_DATE;
 
 
-#inserting historical info about trainers
+--inserting historical info about trainers
 INSERT INTO COACHES_HISTORY(STAGE_ID, TEAM_ID, COACH_ID)
 SELECT S.ID, T.ID, C.ID
 FROM DATA_TABLE DT, STAGES S, COACHES C, TEAMS T, LEAGUES L, MATCHES M
@@ -93,7 +93,7 @@ WHERE DT.Trainer_Team_2 = C.COACH_NAME
 
 
 
-#inserting historical info about players
+--inserting historical info about players
 INSERT INTO PLAYERS_HISTORY(PLAYER_ID, STAGE_ID, TEAM_ID)
 SELECT P.ID, S.ID, T.ID
 FROM DATA_TABLE DT, PLAYERS P, STAGES S, TEAMS T, LEAGUES L, MATCHES M

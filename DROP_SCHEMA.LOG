@@ -1,0 +1,6 @@
+Name of user to be dropped: EPAM
+
+SP2-0310: unable to open file "drop_user.sql"
+Name of tablespace to be dropped: 'EPAM_DATA'
+
+SP2-0310: unable to open file "drop_tablespace.sql"
